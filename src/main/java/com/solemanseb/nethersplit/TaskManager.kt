@@ -18,8 +18,6 @@ class TaskManager(private val main: PluginMain) {
     fun updateActionBar(player: Player) {
         Bukkit.getScheduler().scheduleSyncRepeatingTask(main, {
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent(""" ${ChatColor.BOLD} ${ChatColor.RED} ${getTime()} """))
-            Bukkit.broadcastMessage("${main.ticks}")
-            Bukkit.broadcastMessage("${main.ticks/20}")
         },0L,20L)
     }
 
