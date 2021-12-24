@@ -11,18 +11,17 @@ class PluginMain : JavaPlugin() {
     var mainLogger: Logger = Logger.getLogger("com.solemanseb.nethersplit.PluginMain")
     var isDebugMode = false
     var commands: PluginCommands = PluginCommands(this)
-    var ticks: Double = 0.0;
-    var time: Double = ticks/20
+    var ticks: Int = -1
     var taskManager: TaskManager = TaskManager(this)
 
 
     override fun onDisable() {
-        logger!!.info("Nethersplit plugin disabled")
+        logger.info("Nethersplit plugin disabled")
     }
 
     override fun onEnable() {
         mainLogger = Logger.getLogger("com.solemanseb.nethersplit.PluginMain")
-        mainLogger = getLogger()
+        mainLogger = logger
         mainLogger.info("Nethersplit Plugin Enabled!")
         saveDefaultConfig()
         isDebugMode = config.getBoolean("debugMode", false)

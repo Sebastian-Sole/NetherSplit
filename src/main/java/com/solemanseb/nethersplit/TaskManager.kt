@@ -18,13 +18,15 @@ class TaskManager(private val main: PluginMain) {
     fun updateActionBar(player: Player) {
         Bukkit.getScheduler().scheduleSyncRepeatingTask(main, {
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent(""" ${ChatColor.BOLD} ${ChatColor.RED} ${getTime()} """))
+            Bukkit.broadcastMessage("${main.ticks}")
+            Bukkit.broadcastMessage("${main.ticks/20}")
         },0L,20L)
     }
 
     private fun getTime(): String {
-        val hours: Int = (main.time / 3600).toInt()
-        val minutes: Int = (main.time % 3600 / 60).toInt()
-        val seconds: Int = (main.time % 3600 % 60).toInt()
+        val hours: Int = (main.ticks/20 / 3600)
+        val minutes: Int = ((main.ticks/20 % 3600) / 60)
+        val seconds: Int = main.ticks/20 % 60
         return "${hours}:${minutes}:${seconds}"
     }
 }
